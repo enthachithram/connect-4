@@ -8,4 +8,5 @@ const Eventinfo = ({ params }: { params: { id: string } }) => {
 
 }
 
+
 export default Eventinfo
