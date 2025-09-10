@@ -13,7 +13,7 @@ const Events = () => {
     const cityidLower = String(cityid).toLowerCase();
 
     const [loading, setLoading] = useState<boolean>(true)
-    const [eventlist, setEventlist] = useState<{ id: number; name: string; date: string; location: string; people: number }[]>([{ id: 1, name: "dfdf", date: "fdfdf", location: "akjhkh", people: 3 }]);
+    const [eventlist, setEventlist] = useState<{ eventid: number; name: string; date: string; location: string; people: number }[]>([{ eventid: 1, name: "dfdf", date: "fdfdf", location: "akjhkh", people: 3 }]);
 
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const Events = () => {
                 {loading ? <h1 className="text-2xl ">Loading...</h1> : eventlist.length === 0 ? <h1>No events yet</h1> :
                     eventlist.map((event, index) => (
 
-                        <div key={event.id}>
+                        <div key={event.eventid}>
 
 
                             <Link href={`/cities/` + cityid + `/events/` + event.name}>
