@@ -1,19 +1,22 @@
 "use client"
 
+import { AuthContext } from "@/context/authContext"
 import { supabase } from "@/lib/supabase"
 import { easeIn, motion, spring } from "framer-motion"
-import { useState } from "react"
+import { useContext, useState } from "react"
 
 const Signup = (({ closemodal }: { closemodal: () => void }) => {
-
+    const { user, numb, dispatch } = useContext(AuthContext)!
     const [email, setEmail] = useState<string>("")
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [thh, setThh] = useState<boolean>(true)
     const [messsage, setMessage] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const handlesubmit = (async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setLoading(true)
 
         if (thh) {
             const { data, error } = await supabase.auth.signUp({ email: email, password: password })
@@ -30,6 +33,8 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
                 else {
                     closemodal()
                     localStorage.setItem("user", JSON.stringify(data));
+                    dispatch({ type: "LOGIN", payload: data });
+
                 }
 
             }
@@ -44,10 +49,15 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
             else {
                 closemodal()
                 localStorage.setItem("user", JSON.stringify(data));
+                dispatch({ type: "LOGIN", payload: data })
             }
         }
 
+        setLoading(false)
+
+
     })
+    console.log(numb, "ss", user)
 
 
     return (
@@ -94,7 +104,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
                         onChange={(e) => { setName(e.target.value) }}
 
                     />}
-                    <button type="submit" className="py-2 rounded-md w-[20%] bg-white cursor-pointer text-black"> {thh ? "Sign up" : "Login"}</button>
+                    <button type="submit" className="py-2 rounded-md w-[20%] bg-white cursor-pointer text-black"> {loading ? "Loading... " : thh ? "Sign up" : "Login"}</button>
 
 
                 </motion.form>
@@ -102,6 +112,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
                     {thh ? "Have an account? Login" : "No account? Signup"}
                 </a>
                 <div> {messsage}</div>
+                <div> {user?.user.id}aa</div>
 
             </motion.div>
         </div>

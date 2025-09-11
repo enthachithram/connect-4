@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Signup from "./components/signup";
 import { useState } from "react";
+import { AuthContextProvider } from "@/context/authContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,10 +41,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar></Navbar>
-        <div onClick={() => setSignupmodal(true)}>sign up</div>
-        {signupmodal && <Signup closemodal={signupclose} />}
-        {children}
+        <AuthContextProvider>
+          <Navbar></Navbar>
+          <div onClick={() => setSignupmodal(true)}>sign up</div>
+          {signupmodal && <Signup closemodal={signupclose} />}
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );
