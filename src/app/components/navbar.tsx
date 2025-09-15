@@ -1,12 +1,14 @@
 import { AuthContext } from "@/context/authContext"
+import { supabase } from "@/lib/supabase"
 import { useContext } from "react"
 
 const Navbar = () => {
 
     const { user, dispatch } = useContext(AuthContext)!
 
-    const logout = (() => {
+    const logout = (async () => {
         dispatch({ type: "LOGOUT" })
+        await supabase.auth.signOut()
     })
 
     return (

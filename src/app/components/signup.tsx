@@ -32,7 +32,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
                 }
                 else {
                     closemodal()
-                    localStorage.setItem("user", JSON.stringify(data));
+
                     dispatch({ type: "LOGIN", payload: data });
 
                 }
@@ -48,7 +48,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
             }
             else {
                 closemodal()
-                localStorage.setItem("user", JSON.stringify(data));
+
                 dispatch({ type: "LOGIN", payload: data })
             }
         }
