@@ -51,7 +51,7 @@ const Events = () => {
                         <div key={event.eventid}>
 
 
-                            <Link href={`/cities/` + cityid + `/events/` + event.name}>
+                            <Link href={`/cities/` + cityid + `/events/` + event.eventid}>
                                 <motion.div
                                     className="bg-[#FFFFFF] border border-gray-400 px-5 py-2 rounded-xl w-150 transition-shadow  shadow-md hover:shadow-xl"
                                     initial={{ opacity: 0, y: 40 }}
@@ -67,7 +67,8 @@ const Events = () => {
                                         {/* left */}
                                         <div className="truncate w-70">
                                             <p className="text-[18px] font-semibold">{event.name}</p>
-                                            <p className="text-gray-500 ">{event.date}</p>
+                                            <p className="text-gray-500 ">{event.date.toString().split("T")[0]}</p>
+                                            <p className="text-gray-500 ">{event.date.toString().split("T")[1]?.slice(0, 5)} </p>
 
                                             <p className="text-gray-500">{event.location}</p>
 
