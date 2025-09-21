@@ -1,10 +1,30 @@
 import { AuthContext } from "@/context/authContext"
+
+
+
+
 import { supabase } from "@/lib/supabase"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
+
+
 
 const Navbar = () => {
 
     const { user, dispatch } = useContext(AuthContext)!
+
+    const [user2, setUser2] = useState<any>()
+    useEffect(() => {
+
+        const userdata = (async () => {
+            const { data: { user }, error } = await supabase.auth.getUser()
+            user && setUser2(user)
+            console.log(user, "supa")
+        })
+        userdata()
+
+    }, [])
+
+
 
     const logout = (async () => {
         dispatch({ type: "LOGOUT" })
@@ -14,8 +34,10 @@ const Navbar = () => {
     return (
 
         <>
-            <div>aaaa</div>
-            <div>user id: {user?.user.id}</div>
+
+            <div>user id: {user?.id}</div>
+            <div>user id supa: {user2?.id}</div>
+            <div>user name: {user?.username}</div>
 
             {user && <div onClick={logout}> LOGOUT </div>}
         </>

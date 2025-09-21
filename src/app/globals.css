@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+html {
+  overflow-y: scroll;
+
+  scrollbar-gutter: stable;
+}
+
+
+
+
 :root {
   --background: #0a0a0a;
   --foreground: #0a0a0a;

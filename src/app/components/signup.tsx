@@ -7,6 +7,9 @@ import { useContext, useState } from "react"
 
 const Signup = (({ closemodal }: { closemodal: () => void }) => {
     const { user, numb, dispatch } = useContext(AuthContext)!
+
+    let userid: string | undefined;
+
     const [email, setEmail] = useState<string>("")
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
@@ -20,38 +23,71 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
 
         if (thh) {
             const { data, error } = await supabase.auth.signUp({ email: email, password: password })
-            console.log(data)
+
+            console.log(data, "user data from supa sign up")
             if (error) {
                 setMessage(error.message)
+                return
+            }
+
+            const { error: usernameError } = await supabase.from("Users").insert([{ id: data?.user?.id, email: email, username: name }])
+
+            if (usernameError) {
+                setMessage(usernameError.message)
             }
             else {
-                const { error: usernameError } = await supabase.from("Users").insert([{ id: data?.user?.id, email: email, username: name }])
 
-                if (usernameError) {
-                    setMessage(usernameError.message)
-                }
-                else {
-                    closemodal()
+                userid = data?.user?.id
+                console.log(userid)
+                closemodal()
 
-                    dispatch({ type: "LOGIN", payload: data });
 
-                }
 
             }
+
+
 
         }
         else {
+
             const { data, error } = await supabase.auth.signInWithPassword({ email: email, password: password })
+            console.log(data, "user data from supa log in ")
 
             if (error) {
                 setMessage(error.message)
+                return
             }
-            else {
-                closemodal()
 
-                dispatch({ type: "LOGIN", payload: data })
-            }
+
+            userid = data?.user?.id
+            console.log(data?.user?.id)
+            console.log(userid)
+            closemodal()
+
+
+            // const { data: userdata, error: userdataerror } = await supabase.from("Users").select("id,username").eq("id", data.user.id).single()
+
+
+
+
         }
+
+
+        console.log(userid, "signuppage end")
+
+        const { data, error } = await supabase
+            .from("Users")
+            .select("*")
+            .limit(10);
+
+        console.log("first 10 rows:", data);
+
+
+        const { data: userdata, error: userdataerror } = await supabase.from("Users").select("id,username").eq("id", userid).single()
+        userdataerror && console.log(userdataerror, "userdata error")
+        console.log(userdata, "user data after fetch")
+
+        dispatch({ type: "LOGIN", payload: userdata })
 
         setLoading(false)
 
@@ -112,7 +148,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
                     {thh ? "Have an account? Login" : "No account? Signup"}
                 </a>
                 <div> {messsage}</div>
-                <div> {user?.user.id}aa</div>
+                <div> {user?.user?.id}aa</div>
 
             </motion.div>
         </div>

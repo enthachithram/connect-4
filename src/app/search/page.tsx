@@ -2,18 +2,38 @@
 
 import Link from "next/link";
 import { useState } from "react"
+import EventCards from "../components/EventCards";
 
 const Search = (() => {
 
     const [query, setQuery] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(false)
     const [eventlist, setEventlist] = useState<{
-        eventid: number; name: string; date: string; location: string; people: number, cityid: string
+        eventid: string; name: string; date: string; location: string; people: number, cityid: string
     }[]>
-        ([{ eventid: 1, name: "dfdf", date: "fdfdf", location: "akjhkh", people: 3, cityid: "cityyyy" }]);
+        ([{ eventid: "ijj", name: "dfdf", date: "fdfdf", location: "akjhkh", people: 3, cityid: "cityyyy" }]);
 
 
     const handlesubmit = ((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setLoading(true)
+
+
+        fetch("/api/search", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query }),
+        }).then(res => res.json().then(data => {
+            setLoading(false)
+            data.events && setEventlist(data.events)
+
+            console.log(data)
+            console.log(data.events)
+        })).catch(error => console.log(error))
+
+
+
+
 
     })
 
@@ -35,15 +55,12 @@ const Search = (() => {
                             onChange={(e) => setQuery(e.target.value)}
 
                         />
+                        <button type="submit"> search</button>
                     </form>
                 </div>
-                <div className="flex justify-center">
-                    {eventlist.map((event, index) => (
-                        <div key={event.eventid}>
-                            <Link href={`/cities/` + event.cityid + `/events/` + event.eventid} key={event.eventid}> {event.name} </Link>
-                        </div>
+                <div className="flex flex-col items-center justify-center">
+                    {loading ? <div> Loading... </div> : eventlist.length > 0 ? <EventCards eventlist={eventlist} /> : "no events match your query"}
 
-                    ))}
                 </div>
             </div>
         </div>
