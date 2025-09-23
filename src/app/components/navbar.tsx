@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react"
 
 const Navbar = () => {
 
-    const { user, dispatch } = useContext(AuthContext)!
+    const { user, dispatch, supaUser } = useContext(AuthContext)!
 
     const [user2, setUser2] = useState<any>()
     useEffect(() => {
@@ -31,6 +31,8 @@ const Navbar = () => {
         await supabase.auth.signOut()
     })
 
+    supaUser && console.log("supUSer", supaUser)
+
     return (
 
         <>
@@ -38,6 +40,7 @@ const Navbar = () => {
             <div>user id: {user?.id}</div>
             <div>user id supa: {user2?.id}</div>
             <div>user name: {user?.username}</div>
+            <div>user name: {supaUser?.id}</div>
 
             {user && <div onClick={logout}> LOGOUT </div>}
         </>
