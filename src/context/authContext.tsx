@@ -1,11 +1,11 @@
 import { supabase } from "@/lib/supabase";
-import { useEffect, useReducer, createContext, PropsWithChildren } from "react";
+import { useEffect, useReducer, createContext, PropsWithChildren, useState } from "react";
 
 interface AuthContextType {
     user: any;
     supaUser: any;
     authError: any;
-    numb: any;
+    authLoading: boolean;
     dispatch: React.Dispatch<any>;
 }
 
@@ -16,10 +16,14 @@ export const authReducer = (state: any, action: any) => {
         case "LOGIN":
 
             localStorage.setItem("user", JSON.stringify(action.payload));
+
             return {
                 ...state,
                 user: action.payload,
-                authError: null
+                authError: null,
+
+
+
 
             };
 
@@ -35,8 +39,11 @@ export const authReducer = (state: any, action: any) => {
             return {
                 ...state,
                 supaUser: action.payload,
-                authError: null
+                authError: null,
+
             }
+
+
 
         default:
             return state;
@@ -51,13 +58,20 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
         user: null,
         supaUser: null,
         authError: null,
+
         numb: 9
     })
+
+    const [authLoading, setAuthLoading] = useState(true);
+
+
 
 
 
 
     useEffect(() => {
+
+
 
         const supa = (async () => {
             const { data: supaUser } = await supabase.auth.getUser()
@@ -74,10 +88,11 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
 
 
 
-        } else {
-            state.authError = "no user";
-
         }
+
+
+
+
 
     }, [])
 
