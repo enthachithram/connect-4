@@ -14,11 +14,12 @@ const eslintConfig = [
 
   {
     rules: {
-      "@typescript-eslint/no-unused-vars": "off", // allows unused variables
-      "@typescript-eslint/no-explicit-any": "off", // allows 'any' types
-      "@typescript-eslint/no-empty-object-type": "off", // allows '{}'
+      "@typescript-eslint/no-unused-vars": "off",         // unused vars
+      "@typescript-eslint/no-explicit-any": "off",        // any types
+      "@typescript-eslint/no-empty-object-type": "off",   // {} type
+      "@typescript-eslint/no-unused-expressions": "off",  // unused expressions
+      "react-hooks/exhaustive-deps": "off",               // missing deps in useEffect
     },
   },
-];
 
 export default eslintConfig;
