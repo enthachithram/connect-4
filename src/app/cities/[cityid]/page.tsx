@@ -1,18 +1,23 @@
-import Link from "next/link"
+"use client";
 
-const Events = ({ params }: { params: { cityid: string } }) => {
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
-    const { cityid } = params
-    console.log(params, cityid)
-    return (
-        <>
-            {console.log(params, cityid)}
-            <Link href={`/cities/${cityid}/events`}><div>events</div></Link>
-            <h1>{cityid}</h1>
-
-        </>
-
-    )
+interface EventsPageProps {
+    params: { cityid: string };
 }
 
-export default Events
+const Events = () => {
+    const { cityid } = useParams();
+
+    return (
+        <>
+            <Link href={`/cities/${cityid}/events`}>
+                <div>events</div>
+            </Link>
+            <h1>{cityid}</h1>
+        </>
+    );
+};
+
+export default Events;

@@ -6,7 +6,7 @@ import { easeIn, motion, spring } from "framer-motion"
 import { useContext, useState } from "react"
 
 const Signup = (({ closemodal }: { closemodal: () => void }) => {
-    const { user, numb, dispatch } = useContext(AuthContext)!
+    const { user, dispatch } = useContext(AuthContext)!
 
     let userid: string | undefined;
 
@@ -93,7 +93,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
 
 
     })
-    console.log(numb, "ss", user)
+
 
 
     return (

@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { useParams } from "next/navigation"
 import React, { useContext, useEffect, useState } from "react"
 
-const Eventinfo = ({ params }: { params: { eventid: string } }) => {
+const Eventinfo = () => {
 
     const { user, authLoading } = useContext(AuthContext)!
 

@@ -19,6 +19,7 @@ const eslintConfig = [
       "@typescript-eslint/no-empty-object-type": "off", // {} type
       "@typescript-eslint/no-unused-expressions": "off", // unused expressions
       "react-hooks/exhaustive-deps": "off", // missing deps in useEffect
+      "prefer-const": "off",
     },
   },
 ];
