@@ -2,6 +2,7 @@
 
 import { AuthContext } from "@/context/authContext"
 import { supabase } from "@/lib/supabase"
+import { motion } from "framer-motion"
 import { useParams } from "next/navigation"
 import React, { useContext, useEffect, useState } from "react"
 
@@ -104,14 +105,14 @@ const Eventinfo = ({ params }: { params: { eventid: string } }) => {
 
 
 
-        <div>
+        <div className="flex flex-col items-center">
 
 
             <div> chat of the event: {eventid} </div>
-            <button className={`px-6 rounded-4xl py-1.5 cursor-pointer text-white ${joined ? "bg-red-700" : "bg-black"}`}
+            <motion.button className={`w-[250px] px-6 rounded-4xl py-1.5 cursor-pointer text-white ${joined ? "bg-red-700" : "bg-black"} whitespace-nowrap overflow-hidden `}
                 onClick={handlesubmit}>
-                {authLoading || loading || joined === null ? <span className="spinner"></span> : joined ? "Leave this event" : "Join this event"}  </button>
 
+                {authLoading || loading || joined === null ? <span className="spinner"></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
 
 
         </div>

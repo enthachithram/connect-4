@@ -14,13 +14,15 @@ const Events = () => {
     const cityidLower = String(cityid).toLowerCase();
 
     const [loading, setLoading] = useState<boolean>(true)
-    const [eventlist, setEventlist] = useState<{ eventid: number; name: string; date: string; location: string; people: number }[]>([{ eventid: 1, name: "dfdf", date: "fdfdf", location: "akjhkh", people: 3 }]);
+    const [eventlist, setEventlist] = useState<{ eventid: number; name: string; date: string; location: string; people: number }[]>([]);
 
 
     useEffect(() => {
 
 
         const fetchevents = (async () => {
+
+
             setLoading(true)
 
             const { data, error } = await supabase.from("Events").select("*").eq("cityid", cityidLower)
@@ -37,7 +39,9 @@ const Events = () => {
             }
 
         })
-        fetchevents()
+        if (eventlist.length < 1) {
+            fetchevents()
+        }
 
     }, [])
 
@@ -58,3 +62,4 @@ const Events = () => {
 }
 
 export default Events
+

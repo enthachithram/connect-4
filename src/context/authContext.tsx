@@ -87,8 +87,11 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
             supa()
 
 
-
         }
+        setTimeout(() => {
+            setAuthLoading(false)
+        }, 200);
+
 
 
 
@@ -97,7 +100,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ ...state, dispatch }}>
+        <AuthContext.Provider value={{ ...state, dispatch, authLoading }}>
             {children}
 
         </AuthContext.Provider>

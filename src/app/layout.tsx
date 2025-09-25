@@ -27,11 +27,6 @@ export default function RootLayout({
 }>) {
 
 
-  const [signupmodal, setSignupmodal] = useState<boolean>(false)
-
-  const signupclose = (() => {
-    setSignupmodal(!signupmodal)
-  })
   return (
 
 
@@ -43,8 +38,7 @@ export default function RootLayout({
       >
         <AuthContextProvider>
           <Navbar></Navbar>
-          <div onClick={() => setSignupmodal(true)}>sign up</div>
-          {signupmodal && <Signup closemodal={signupclose} />}
+
           {children}
         </AuthContextProvider>
       </body>
