@@ -1,24 +1,21 @@
 "use client"
 
+import Chat from "@/app/components/Chat"
 import { AuthContext } from "@/context/authContext"
 import { supabase } from "@/lib/supabase"
 import { motion } from "framer-motion"
 import { useParams } from "next/navigation"
+
 import React, { useContext, useEffect, useState } from "react"
 
 const Eventinfo = () => {
 
     const { user, authLoading } = useContext(AuthContext)!
 
-    const { eventid } = useParams()
+    const { eventid } = useParams() as { eventid: string }
 
     const [joined, setJoined] = useState<boolean | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-
-
-
-
-
 
     const handlesubmit = async () => {
 
@@ -33,11 +30,6 @@ const Eventinfo = () => {
                 return alert("signup or login ")
             }
             const token = session.access_token
-
-
-
-
-
 
             const result = await fetch("/api/events/join", {
                 method: joined ? "DELETE" : "POST",
@@ -104,29 +96,22 @@ const Eventinfo = () => {
     return (
 
 
-
-        <div className="flex flex-col items-center">
-
-
-            <div> chat of the event: {eventid} </div>
-            <motion.button className={`w-[250px] px-6 rounded-4xl py-1.5 cursor-pointer text-white ${joined ? "bg-red-700" : "bg-black"} whitespace-nowrap overflow-hidden `}
-                onClick={handlesubmit}>
-
-                {authLoading || loading || joined === null ? <span className="spinner"></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
+        <div>
+            <div className="flex flex-col items-center">
 
 
+                <div> chat of the event: {eventid} </div>
+                <motion.button className={`w-[250px] px-6 rounded-4xl py-1.5 cursor-pointer text-white ${joined ? "bg-red-700" : "bg-black"} whitespace-nowrap overflow-hidden `}
+                    onClick={handlesubmit}>
+
+                    {authLoading || loading || joined === null ? <span className="spinner"></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
+
+
+            </div>
+            {joined && <Chat eventid={eventid} joined={joined}></Chat>}
         </div>
 
     )
-
-
-
-
-
-
-
-
-
 }
 
 
