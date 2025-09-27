@@ -14,6 +14,7 @@ const Eventinfo = () => {
 
     const { eventid } = useParams() as { eventid: string }
 
+    const [eventInfo, setEventInfo] = useState<any>()
     const [joined, setJoined] = useState<boolean | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -64,6 +65,16 @@ const Eventinfo = () => {
 
     useEffect(() => {
 
+        const info = (async () => {
+            const { data, error } = await supabase.from("Events").select("*").eq("eventid", eventid)
+
+            if (error) console.log(error, "event info error")
+            data && setEventInfo(data[0])
+            console.log(eventInfo, "event info")
+
+
+        })
+
         const check = (async () => {
             if (!user) {
                 setJoined(false)
@@ -88,6 +99,7 @@ const Eventinfo = () => {
             console.log(data)
             data && console.log(joined)
         })
+        info()
         check()
     }, [user])
 
@@ -101,10 +113,13 @@ const Eventinfo = () => {
 
 
                 <div> chat of the event: {eventid} </div>
-                <motion.button className={`w-[250px] px-6 rounded-4xl py-1.5 cursor-pointer text-white ${joined ? "bg-red-700" : "bg-black"} whitespace-nowrap overflow-hidden `}
+                <h1> {eventInfo?.name} </h1>
+                <p> {eventInfo?.description} </p>
+                <motion.button className={`w-[250px] px-6 rounded-4xl py-1.5 cursor-pointer text-black ${joined ? "bg-red-700" : "bg-white"} whitespace-nowrap overflow-hidden `}
                     onClick={handlesubmit}>
 
-                    {authLoading || loading || joined === null ? <span className="spinner"></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
+                    {authLoading || loading || joined === null ? <span className="spinner border-t-transparent
+  border-black"></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
 
 
             </div>

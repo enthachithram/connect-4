@@ -29,12 +29,12 @@ const EventCards = (({ eventlist }: { eventlist: any }) => {
                 {
                     eventlist.map((event: any, index: number) => (
 
-                        <div key={event.eventid}>
+                        <div className="" key={event.eventid}>
 
 
                             <Link href={`/events/` + event.eventid}>
                                 <motion.div
-                                    className="bg-[#FFFFFF] border border-gray-400 px-5 py-2 rounded-xl w-150 transition-shadow  shadow-md hover:shadow-xl"
+                                    className="bg-blend-saturation bg-black border border-white px-5 py-2 rounded-xl w-180 transition-shadow  shadow-md hover:shadow-xl"
                                     initial={{ opacity: 0, y: 40 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, y: { delay: index * 0.07 } }}

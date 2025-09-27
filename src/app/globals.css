@@ -2,8 +2,12 @@
 
 html {
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
 
-  scrollbar-gutter: stable;
+
 }
 
 
@@ -31,17 +35,30 @@ html {
   }
 
   .spinner {
-    @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-t-transparent pt-2
+    @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-t-transparent transform translate-y-0.5
   }
 
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE/Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
 }
 
 
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: rgb(206, 228, 236);
-    --foreground: black;
+    --background: black;
+    --foreground: white;
   }
 }
 

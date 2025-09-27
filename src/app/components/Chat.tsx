@@ -14,7 +14,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
     const { user } = useContext(AuthContext)!
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [messages, setMessages] = useState<any>([])
-    const [newMessage, setNewMessage] = useState<string>()
+    const [newMessage, setNewMessage] = useState<string>("")
 
 
     const handleSubmit = (async (e: React.FormEvent) => {
@@ -56,18 +56,27 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                     event: "INSERT",
                     schema: "public",
                     table: "Chats",
-                    filter: ``, // only this event’s messages
+                    // only this event’s messages
                 },
-                (payload) => {
+                async (payload) => {
                     const newMessage = payload.new
+                    const { data: userData } = await supabase
+                        .from("Users")
+                        .select("username")
+                        .eq("id", newMessage.userid)
+                        .single()
 
+                    if (payload.new.eventid === eventid) {
+                        setMessages((prev: any) => [...prev, { ...newMessage, Users: userData ? { username: userData.username } : [newMessage.userid] }])
+                    }
 
-                    setMessages((prev: any) => [...prev, payload.new])
                     console.log(payload.new, "payload")
 
                 }
             )
-            .subscribe()
+            .subscribe((status) => {
+                console.log("Subscription status:", status)
+            })
 
 
         return () => {
@@ -85,27 +94,39 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
         <div >
             <h1>chat:</h1>
             <section className="flex flex-col items-center">
-                <div className=" h-100 w-[70%] bg-gray-700 py-5 px-3 flex flex-col  ">
-                    <div className=" text-white overflow-y-auto">
+                <div className=" h-100 w-[70%] bg-gray-950 py-5 px-5 flex flex-col justify-between  ">
+
+
+                    <div className=" text-white overflow-y-auto no-scrollbar space-y-2">
+                        {messages.length === 0 && <h1> Be the first to send a message in this chat !</h1>}
                         {messages.map((m: any) => (
                             <div key={m.id}>
                                 <b>{m.Users?.username}:</b> {m.message}
+
                             </div>
                         ))}
                         <div ref={messagesEndRef} />
                     </div>
+
+                    <div>
+                        <form
+                            className="flex space-x-3"
+                            onSubmit={handleSubmit}>
+                            <input
+                                className="w-full text-gray-200  outline-none focus:ring-0"
+                                type="text"
+                                placeholder=" Type your message"
+                                value={newMessage}
+                                onChange={(e) => { setNewMessage(e.target.value) }}
+                            />
+                            <button type="submit">Send</button>
+                        </form>
+                    </div>
+
+
                 </div>
 
-                <div> add a message
-                    <form onSubmit={handleSubmit}>
-                        <textarea
-                            placeholder="add your message"
-                            value={newMessage}
-                            onChange={e => { setNewMessage(e.target.value) }}
-                        />
-                        <button type="submit">Send</button>
-                    </form>
-                </div>
+
             </section>
         </div>
     )
