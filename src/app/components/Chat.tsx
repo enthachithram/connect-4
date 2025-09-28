@@ -36,6 +36,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                 .eq("eventid", eventid)
                 .order("created_at", { ascending: true })
 
+            if (error) console.log(error, "from chat fetch")
             console.log(data, "from chat comp")
 
 
@@ -60,6 +61,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                 },
                 async (payload) => {
                     const newMessage = payload.new
+
                     const { data: userData } = await supabase
                         .from("Users")
                         .select("username")
@@ -92,13 +94,13 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
 
     return (
         <div >
-            <h1>chat:</h1>
-            <section className="flex flex-col items-center">
-                <div className=" h-100 w-[70%] bg-gray-950 py-5 px-5 flex flex-col justify-between  ">
+            <h1></h1>
+            <section className="flex flex-col items-center mb-20 mt-7">
+                <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-2xl border border-white ">
 
 
                     <div className=" text-white overflow-y-auto no-scrollbar space-y-2">
-                        {messages.length === 0 && <h1> Be the first to send a message in this chat !</h1>}
+                        {messages.length === 0 && <h1 className="text-center"> Be the first to send a message in this chat !</h1>}
                         {messages.map((m: any) => (
                             <div key={m.id}>
                                 <b>{m.Users?.username}:</b> {m.message}
@@ -113,13 +115,13 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                             className="flex space-x-3"
                             onSubmit={handleSubmit}>
                             <input
-                                className="w-full text-gray-200  outline-none focus:ring-0"
+                                className="w-full text-gray-200 border border-white rounded-2xl py-1 px-3 outline-none focus:ring-0"
                                 type="text"
                                 placeholder=" Type your message"
                                 value={newMessage}
                                 onChange={(e) => { setNewMessage(e.target.value) }}
                             />
-                            <button type="submit">Send</button>
+                            <button className="cursor-pointer" type="submit">Send</button>
                         </form>
                     </div>
 

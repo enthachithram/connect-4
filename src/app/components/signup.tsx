@@ -90,6 +90,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
         dispatch({ type: "LOGIN", payload: userdata })
 
         setLoading(false)
+        window.location.reload()
 
 
     })

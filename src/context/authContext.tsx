@@ -17,14 +17,11 @@ export const authReducer = (state: any, action: any) => {
 
             localStorage.setItem("user", JSON.stringify(action.payload));
 
+
             return {
                 ...state,
                 user: action.payload,
                 authError: null,
-
-
-
-
             };
 
         case "LOGOUT":
@@ -73,10 +70,21 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
 
 
 
+
+
         const supa = (async () => {
             const { data: supaUser } = await supabase.auth.getUser()
             dispatch({ type: "supaUser", payload: supaUser.user })
             console.log("from auth context", supaUser)
+
+            const channel = supabase
+                .channel("warmup")
+                .on("broadcast", { event: "ping" }, () => { })
+                .subscribe();
+
+            return () => {
+                supabase.removeChannel(channel);
+            };
         })
 
         const user = JSON.parse(localStorage.getItem("user")!)

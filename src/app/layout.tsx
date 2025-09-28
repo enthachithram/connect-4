@@ -39,7 +39,7 @@ export default function RootLayout({
         <AuthContextProvider>
           <Navbar></Navbar>
 
-          {children}
+          <div className="px-5">{children}</div>
         </AuthContextProvider>
       </body>
     </html>

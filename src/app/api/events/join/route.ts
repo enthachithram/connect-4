@@ -35,7 +35,7 @@ export async function POST(req: Request) {
         }
 
         if (data !== "New user joined") {
-            return NextResponse.json({ error: data })
+            return NextResponse.json({ error: data }, { status: 400 })
         }
 
         return NextResponse.json({ success: true })

@@ -24,7 +24,7 @@ const Cities = () => {
 
                                     initial={{ opacity: 0, }}
                                     animate={{ opacity: 1, }}
-                                    transition={{ duration: 0.5, y: { delay: 0.07 * index }, opacity: {} }}
+                                    transition={{ duration: 0.5, opacity: { delay: 0.07 * index }, }}
                                 >
                                     {city}
 
