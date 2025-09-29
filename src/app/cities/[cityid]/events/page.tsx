@@ -50,7 +50,7 @@ const Events = () => {
             <div className="mt-5 text-2xl"> Upcoming events in <span className="font-bold">{cityid}:</span> </div>
 
 
-            {loading ? <h1 className="text-2xl ">Loading...</h1> : eventlist.length === 0 ? <h1>No events yet</h1> :
+            {loading ? <h1 className="text-2xl "><div className="spinner border-t-transparent"></div></h1> : eventlist.length === 0 ? <h1>No events yet</h1> :
                 <EventCards eventlist={eventlist} />
             }
 

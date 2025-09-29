@@ -95,15 +95,15 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
     return (
         <div >
             <h1></h1>
-            <section className="flex flex-col items-center mb-20 mt-7">
+            <section className="flex flex-col items-center mb-20 mt-7 ">
                 <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-2xl border border-white ">
 
 
-                    <div className=" text-white overflow-y-auto no-scrollbar space-y-2">
+                    <div className=" text-white overflow-y-scroll  no-scrollbar space-y-2 mb-2">
                         {messages.length === 0 && <h1 className="text-center"> Be the first to send a message in this chat !</h1>}
                         {messages.map((m: any) => (
-                            <div key={m.id}>
-                                <b>{m.Users?.username}:</b> {m.message}
+                            <div key={m.id} className="flex justify-baseline">
+                                <b>{m.Users?.username}:&nbsp; </b><span className="break-all">{m.message}</span>
 
                             </div>
                         ))}

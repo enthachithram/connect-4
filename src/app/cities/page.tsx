@@ -20,11 +20,11 @@ const Cities = () => {
                         >
                             <Link href={'/cities/' + city + '/events'}>
                                 <motion.div
-                                    className="text-2xl w-auto font-semibold text-left transition-all duration-300 hover:text-3xl hover:font-bold hover:drop-shadow-[0_0_6px_rgba(6,182,212,0.3)] "
+                                    className="text-2xl w-auto font-semibold text-left transition-hover duration-300  hover:text-3xl hover:font-bold hover:drop-shadow-[0_0_6px_rgba(6,182,212,0.3)] "
 
-                                    initial={{ opacity: 0, }}
-                                    animate={{ opacity: 1, }}
-                                    transition={{ duration: 0.5, opacity: { delay: 0.07 * index }, }}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ y: { delay: 0.04 * index, duration: 0.3 }, opacity: { delay: 0.07 * index }, }}
                                 >
                                     {city}
 

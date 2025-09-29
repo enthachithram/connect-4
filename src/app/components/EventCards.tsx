@@ -37,10 +37,10 @@ const EventCards = (({ eventlist }: { eventlist: any }) => {
 
                             <Link href={`/events/` + event.eventid}>
                                 <motion.div
-                                    className="bg-blend-saturation bg-black border border-gray-400 px-5 py-2 rounded-xl w-180 transition-shadow  shadow-md hover:shadow-xl"
+                                    className="bg-blend-saturation bg-black border border-gray-400 px-4 py-2 rounded-xl w-180 transition-shadow  shadow-md hover:shadow-xl"
                                     initial={{ opacity: 0, y: 40 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, y: { delay: index * 0.07 } }}
+                                    transition={{ duration: 0.5, y: { delay: index * 0.07 }, opacity: { delay: index * 0.1 } }}
                                     whileHover={{
                                         scale: 1.05,
 

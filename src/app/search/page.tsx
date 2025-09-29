@@ -11,7 +11,7 @@ const Search = (() => {
     const [eventlist, setEventlist] = useState<{
         eventid: string; name: string; date: string; location: string; people: number, cityid: string
     }[]>
-        ([{ eventid: "ijj", name: "dfdf", date: "fdfdf", location: "akjhkh", people: 3, cityid: "cityyyy" }]);
+        ([{ eventid: "0001", name: "Example event", date: "2026-04-26T17:00:00", location: "Home", people: 3, cityid: "Hyderabad" }]);
 
 
     const handlesubmit = ((e: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +47,7 @@ const Search = (() => {
                         className="w-full flex justify-center ">
                         <input
 
-                            className="w-[75%] text-center border-2 border-black p-2 rounded-3xl "
+                            className="w-[75%] text-center  p-2 rounded-3xl outline-none"
                             type="text"
                             required
                             placeholder="Search with AI"

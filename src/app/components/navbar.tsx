@@ -1,3 +1,5 @@
+"use client"
+
 import { AuthContext } from "@/context/authContext"
 
 
@@ -48,9 +50,9 @@ const Navbar = () => {
     return (
 
         <motion.nav className=" backdrop-blur-7xl top-0   relative   flex px-5  justify-between items-center-safe rounded-4xl py-1 mt-3"
-            initial={{ y: -60 }}
+            initial={{ y: 0 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}>
+        >
 
             <Link href={"/cities"}> <h1 className=" font-bold text-2xl">CONNECT-4 </h1></Link>
 

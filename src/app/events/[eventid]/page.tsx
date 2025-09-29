@@ -138,7 +138,7 @@ const Eventinfo = () => {
             <motion.div
                 className="flex flex-col w-[70%] self-center justify-center mt-20   border border-white overflow-hidden px-2 py-1 rounded-2xl">
                 <div onClick={() => setShowInfo(!showInfo)}
-                    className="flex justify-between items-center pl-2 "
+                    className="flex justify-between items-center pl-2 cursor-pointer"
                 >
                     <div className=""><b> </b></div>
                     <div className="">{infoLoading ? <span className="spinner border-t-transparent border-white"></span> : <b>{eventInfo?.name} </b>}</div>
@@ -149,18 +149,18 @@ const Eventinfo = () => {
                 <motion.div className="flex text-gray-200 flex-col items-start pl-2 space-y-1.5 "
                     initial={{ height: showInfo ? "auto" : "0", opacity: showInfo ? 1 : 0, pointerEvents: showInfo ? "auto" : "none" }}
                     animate={{ height: showInfo ? "auto" : "0", opacity: showInfo ? 1 : 0, pointerEvents: showInfo ? "auto" : "none", }}
-                    transition={{ height: { type: "spring", damping: 19, stiffness: 150 }, opacity: { duration: 0.2 }, pointerEvents: { duration: 0 } }}>
+                    transition={{ height: { type: !showInfo ? "tween" : "spring", damping: 17, stiffness: 125, ease: "linear" }, opacity: { duration: 0.2 }, pointerEvents: { duration: 0 } }}>
 
 
                     {/* <div> chat of the event: {eventid} </div> */}
                     {infoLoading ? <div role="status" aria-busy="true" className="w-full space-y-5">
-                        <div className="mt-5 h-3 w-3/6 rounded bg-gray-900 animate-pulse" />
+                        <div className="mt-4.5 h-3 w-3/6 rounded bg-gray-900 animate-pulse" />
                         <div className="h-3 w-1/6 rounded bg-gray-900  animate-pulse" />
                         <div className="h-3 w-4/6 rounded bg-gray-900  animate-pulse" />
                         <div className="h-3 w-3/5 rounded bg-gray-900 animate-pulse" />
                         <div className=" h-3 w-3/5 rounded bg-gray-900 animate-pulse" />
                         <div className=" h-3 w-2/5 rounded bg-gray-900 animate-pulse" />
-                        <div className="mb-2 h-3 w-4/5 rounded bg-gray-900 animate-pulse" />
+                        <div className="mb-0.5 h-3 w-4/5 rounded bg-gray-900 animate-pulse" />
                     </div> :
 
                         <> <h1 className="mt-5"> <b>Event Name: </b>{eventInfo?.name} </h1>
