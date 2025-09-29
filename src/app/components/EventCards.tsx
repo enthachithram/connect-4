@@ -29,7 +29,7 @@ const EventCards = (({ eventlist }: { eventlist: any }) => {
     return (
         <div>
             <div className="flex flex-col space-y-5 mt-10 mb-15">
-                {
+                {eventlist && eventlist.length > 0 ?
                     eventlist.map((event: any, index: number) => (
 
                         <div className="" key={event.eventid}>
@@ -71,7 +71,7 @@ const EventCards = (({ eventlist }: { eventlist: any }) => {
                                             </div>
 
 
-                                            <p className="text-gray-500">{new Date(event.date).toLocaleDateString("en-US", { weekday: "long" })}, <span className="text-gray-500 ">{event.date.toString().split("T")[1]?.slice(0, 5)} </span></p>
+                                            <p className="text-gray-500">{new Date(event?.date).toLocaleDateString("en-US", { weekday: "long" })}, <span className="text-gray-500 ">{event?.date?.toString().split("T")[1]?.slice(0, 5)} </span></p>
                                             <p className="text-gray-500">{event.people}/4</p>
 
 
@@ -84,7 +84,7 @@ const EventCards = (({ eventlist }: { eventlist: any }) => {
                         </div>
 
                     ))
-                }
+                    : "No Events"}
             </div>
         </div>
     )

@@ -54,7 +54,7 @@ const Events = () => {
                 <EventCards eventlist={eventlist} />
             }
 
-            <div className="text-white fixed bottom-7 right-5 border-2 py-1.5 px-3 bg-black rounded-3xl "> <Link href={`/cities/` + cityid + `/create`}> Create an event </Link> </div>
+            <div className="text-white fixed bottom-7 right-5 border py-1.5 px-3 bg-black rounded-3xl "> <Link href={`/cities/` + cityid + `/create`}> Create an event </Link> </div>
 
         </div>
 

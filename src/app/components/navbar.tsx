@@ -37,6 +37,7 @@ const Navbar = () => {
     const logout = (async () => {
         dispatch({ type: "LOGOUT" })
         await supabase.auth.signOut()
+        window.location.reload()
     })
 
     supaUser && console.log("supUSer", supaUser)
@@ -71,7 +72,7 @@ const Navbar = () => {
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.5 }}>
 
-                                <div className="" > My Events</div>
+                                <Link href={"/myevents"} className="" > My Events</Link>
                                 <div className="text-red-700" onClick={logout}> Logout</div>
                             </motion.div>}
                     </div> : < div className="font-bold" onClick={() => { setSignupmodal(true); setMenu(false) }}>LOGIN</div>}

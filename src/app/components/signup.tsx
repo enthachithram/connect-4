@@ -27,6 +27,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
             console.log(data, "user data from supa sign up")
             if (error) {
                 setMessage(error.message)
+                setLoading(false)
                 return
             }
 
@@ -55,6 +56,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
 
             if (error) {
                 setMessage(error.message)
+                setLoading(false)
                 return
             }
 

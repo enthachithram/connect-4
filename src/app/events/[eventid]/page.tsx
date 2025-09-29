@@ -167,15 +167,15 @@ const Eventinfo = () => {
                             <h1> <b>Members: </b>{eventInfo?.people} </h1>
                             <p> <b>Description: </b>{eventInfo?.description} </p>
                             <p> <b>Date: </b>{eventInfo?.date} </p>
-                            <p >  <b>Location: </b>{eventInfo?.location} </p>
+                            <p >  <b>Location: </b>{eventInfo?.location} ({eventInfo?.cityid})</p>
                             <p >  <b>Created by: </b>{username} </p>
                             <p >  <b>Created on: </b>{eventInfo?.created_at.split("T")[0]} </p></>}
 
-                    <motion.button className={`self-center mb-2 mt-2 w-[250px] px-6 rounded-4xl py-1.5 transition-all duration-300 cursor-pointer text-black ${joined ? "bg-red-500 hover:bg-red-700 " : "bg-white"} whitespace-nowrap overflow-hidden `}
+                    <motion.button className={`self-center mb-2 mt-2 w-[250px] px-6 rounded-4xl py-1.5 transition-all duration-300 cursor-pointer text-black  ${joined ? "border border-red-500 text-red-500 hover:bg-red-500 hover:text-white hover:border-black " : " bg-white border border-white hover:bg-gray-200 "} whitespace-nowrap overflow-hidden `}
                         onClick={handlesubmit}>
 
-                        {authLoading || loading || joined === null ? <span className="spinner border-t-transparent
-  border-black"></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
+                        {authLoading || loading || joined === null ? <span className={`spinner border-t-transparent
+  border-black ${joined ? "border-white" : "border-black"}`}></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
                 </motion.div>
 
 
