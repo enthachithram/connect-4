@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 import { join } from "path"
 
 
-const myevents = (() => {
+const Myevents = (() => {
     const { user } = useContext(AuthContext)!
     const [show, setShow] = useState<number>(1)
     const [loading, setLoading] = useState<boolean>(true)
@@ -81,4 +81,4 @@ const myevents = (() => {
 
 })
 
-export default myevents
+export default Myevents
