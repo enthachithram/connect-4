@@ -9,7 +9,7 @@ import { join } from "path"
 
 
 const Myevents = (() => {
-    const { user } = useContext(AuthContext)!
+    const { user, authLoading } = useContext(AuthContext)!
     const [show, setShow] = useState<number>(1)
     const [loading, setLoading] = useState<boolean>(true)
     const [joinedEvents, setJoinedEvents] = useState<any>([])
@@ -20,7 +20,7 @@ const Myevents = (() => {
         const fetchjoined = (async () => {
             if (!user) return
             setLoading(true)
-            const { data, error } = await supabase.from("Participants").select("Events!inner(*)").eq("userid", user.id)
+            const { data, error } = await supabase.from("Participants").select("Events!inner(*)").eq("userid", user.id).or("isOwner.eq.false,isOwner.is.null");
             console.log(data, "joiend data")
             if (error) console.log(error, "joined events error")
             else {
@@ -28,15 +28,18 @@ const Myevents = (() => {
                     e.Events
                 ))
                 setJoinedEvents(newdata)
-                setLoading(false)
+                setTimeout(() => setLoading(false), 0);
             }
         })
 
         const fetchcreated = (async () => {
-            if (!user) return
+            if (!user) { setLoading(false); return }
             setLoading(true)
+
             const { data, error } = await supabase.from("Events").select("*").eq("created_by", user.id)
             console.log(data, "created data")
+
+            if (error) { setLoading(false); return }
             setCreatedEvents(data)
             // console.log(createdEvents,data,"created events")
             setLoading(false)
@@ -73,7 +76,7 @@ const Myevents = (() => {
                     />}
                 </div>
             </div>
-            <section className="flex flex-col items-center">{loading ? <span className="mt-5 spinner border-t-transparent border-white"></span> : <EventCards eventlist={show === 1 ? joinedEvents : show === 2 ? createdEvents : null} />} </section>
+            <section className="flex flex-col items-center">{loading || authLoading ? <span className="mt-5 spinner border-t-transparent border-white"></span> : <EventCards eventlist={show === 1 ? joinedEvents : show === 2 ? createdEvents : null} />} </section>
             <section></section>
             <section></section>
         </div>

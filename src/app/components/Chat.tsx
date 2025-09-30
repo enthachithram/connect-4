@@ -117,6 +117,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                             <input
                                 className="w-full text-gray-200 border border-white rounded-2xl py-1 px-3 outline-none focus:ring-0"
                                 type="text"
+                                required
                                 placeholder=" Type your message"
                                 value={newMessage}
                                 onChange={(e) => { setNewMessage(e.target.value) }}

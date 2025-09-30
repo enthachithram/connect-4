@@ -120,7 +120,7 @@ const Eventinfo = () => {
             setJoined(data.length > 0);
             setShowInfo(!(data.length > 0))
 
-            setLoading(false)
+            setTimeout(() => setLoading(false), 0);
 
             console.log(data)
             data && console.log(joined)
@@ -163,13 +163,17 @@ const Eventinfo = () => {
                         <div className="mb-0.5 h-3 w-4/5 rounded bg-gray-900 animate-pulse" />
                     </div> :
 
-                        <> <h1 className="mt-5"> <b>Event Name: </b>{eventInfo?.name} </h1>
-                            <h1> <b>Members: </b>{eventInfo?.people} </h1>
-                            <p> <b>Description: </b>{eventInfo?.description} </p>
-                            <p> <b>Date: </b>{eventInfo?.date} </p>
-                            <p >  <b>Location: </b>{eventInfo?.location} ({eventInfo?.cityid})</p>
-                            <p >  <b>Created by: </b>{username} </p>
-                            <p >  <b>Created on: </b>{eventInfo?.created_at.split("T")[0]} </p></>}
+                        <div className="text-gray-300 ">
+                            <h1 className="mt-5"> <b className="text-white">Event Name: </b>{eventInfo?.name} </h1>
+                            <h1 className=""> <b className="text-white">Members: </b >{eventInfo?.people} </h1>
+                            <p className=""> <b className="text-white">Description: </b> {eventInfo?.description} </p>
+                            <p className=""> <b className="text-white">Date: </b>{eventInfo?.date} </p>
+                            <p className="">  <b className="text-white">Location: </b>{eventInfo?.location} ({eventInfo?.cityid})</p>
+
+                            <p className="">  <b className="text-white">Created by: </b>{username} </p>
+
+                            <p className="">  <b className="text-white"> Created on: </b>{eventInfo?.created_at.split("T")[0]} </p>
+                        </div>}
 
                     <motion.button className={`self-center mb-2 mt-2 w-[250px] px-6 rounded-4xl py-1.5 transition-all duration-300 cursor-pointer text-black  ${joined ? "border border-red-500 text-red-500 hover:bg-red-500 hover:text-white hover:border-black " : " bg-white border border-white hover:bg-gray-200 "} whitespace-nowrap overflow-hidden `}
                         onClick={handlesubmit}>

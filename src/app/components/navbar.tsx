@@ -63,11 +63,11 @@ const Navbar = () => {
                 <div className="">
 
 
-                    {authLoading ? <span className="spinner"></span> : user ? <div className="relative font-bold cursor-auto "
+                    {authLoading ? <span className="spinner"></span> : user ? <div className="relative font-bold cursor-pointer"
                         onMouseEnter={() => setMenu(true)} onMouseLeave={() => { setMenu(false) }}> {authLoading ? <span className="spinner"></span> : user?.username + " " + "▾"}
 
                         {menu &&
-                            <motion.div className="cursor-pointer absolute text-md left-[50%] transform translate-x-[-50%]  h-auto top-6 w-max border-gray-400 rounded-md border  px-1 py-0.5"
+                            <motion.div className="absolute flex  flex-col space-y-0.5 cursor-pointer text-[15px] left-[50%] transform translate-x-[-70%]  h-auto top-6 w-max border-gray-600 rounded-md border px-3 py-0.5"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.5 }}>
@@ -75,9 +75,7 @@ const Navbar = () => {
                                 <Link href={"/myevents"} className="" > My Events</Link>
                                 <div className="text-red-700" onClick={logout}> Logout</div>
                             </motion.div>}
-                    </div> : < div className="font-bold" onClick={() => { setSignupmodal(true); setMenu(false) }}>LOGIN</div>}
-
-                    { }
+                    </div> : < div className="font-bold cursor-pointer" onClick={() => { setSignupmodal(true); setMenu(false) }}>LOGIN</div>}
 
 
 

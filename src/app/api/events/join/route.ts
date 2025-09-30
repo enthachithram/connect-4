@@ -43,7 +43,7 @@ export async function POST(req: Request) {
 
 
     } catch (error: any) {
-        return NextResponse.json({ error: error })
+        return NextResponse.json({ error: error }, { status: 400 })
 
     }
 }
@@ -72,7 +72,7 @@ export async function DELETE(req: Request) {
         }
 
         if (data !== "Removed user") {
-            return NextResponse.json({ error: data })
+            return NextResponse.json({ error: data }, { status: 400 })
         }
         console.log(data)
 
@@ -80,6 +80,6 @@ export async function DELETE(req: Request) {
 
 
     } catch (error) {
-        return NextResponse.json({ error: error })
+        return NextResponse.json({ error: error }, { status: 400 })
     }
 }
