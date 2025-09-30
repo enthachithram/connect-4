@@ -42,7 +42,7 @@ const Myevents = (() => {
             if (error) { setLoading(false); return }
             setCreatedEvents(data)
             // console.log(createdEvents,data,"created events")
-            setLoading(false)
+            setTimeout(() => setLoading(false), 0);
         })
 
         fetchjoined()

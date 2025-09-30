@@ -74,6 +74,10 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
 
         const supa = (async () => {
             const { data: supaUser } = await supabase.auth.getUser()
+
+            if (!supaUser?.user) {
+                dispatch({ type: "LOGOUT" })
+            }
             dispatch({ type: "supaUser", payload: supaUser.user })
             console.log("from auth context", supaUser)
 

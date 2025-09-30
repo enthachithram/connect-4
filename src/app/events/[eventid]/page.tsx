@@ -163,7 +163,7 @@ const Eventinfo = () => {
                         <div className="mb-0.5 h-3 w-4/5 rounded bg-gray-900 animate-pulse" />
                     </div> :
 
-                        <div className="text-gray-300 ">
+                        <div className="text-gray-300 flex flex-col space-y-1.5 ">
                             <h1 className="mt-5"> <b className="text-white">Event Name: </b>{eventInfo?.name} </h1>
                             <h1 className=""> <b className="text-white">Members: </b >{eventInfo?.people} </h1>
                             <p className=""> <b className="text-white">Description: </b> {eventInfo?.description} </p>

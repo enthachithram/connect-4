@@ -50,7 +50,7 @@ const Navbar = () => {
 
     return (
 
-        <motion.nav className=" backdrop-blur-7xl top-0   relative   flex px-5  justify-between items-center-safe rounded-4xl py-1 mt-3"
+        <motion.nav className=" backdrop-blur-7xl top-0   relative   flex px-10  justify-between items-center-safe rounded-4xl py-1 mt-3"
             initial={{ y: 0 }}
             animate={{ y: 0 }}
         >
@@ -67,7 +67,7 @@ const Navbar = () => {
                         onMouseEnter={() => setMenu(true)} onMouseLeave={() => { setMenu(false) }}> {authLoading ? <span className="spinner"></span> : user?.username + " " + "▾"}
 
                         {menu &&
-                            <motion.div className="absolute flex  flex-col space-y-0.5 cursor-pointer text-[15px] left-[50%] transform translate-x-[-70%]  h-auto top-6 w-max border-gray-600 rounded-md border px-3 py-0.5"
+                            <motion.div className="absolute flex  flex-col space-y-0.5 cursor-pointer text-[15px] left-[50%] transform translate-x-[-50%]  h-auto top-6 border-t-1  w-max border-gray-600 rounded-md border px-3 py-2"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.5 }}>
