@@ -1,107 +1,79 @@
+"use client"
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
+
 
 export default function Home() {
+
+
+  const [tech, setTech] = useState<boolean>(false)
+
   return (
 
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className=" items-center   w-full  flex flex-col   font-[family-name:var(--font-geist-sans)]">
+      <motion.div className="mt-15 items-center border border-white w-[75%] overflow-hidden  flex flex-col  rounded-xl   font-[family-name:var(--font-geist-sans)]"
+        initial={{ height: "0", opacity: 0 }}
+        animate={{ height: "auto", opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.5 }}>
+        <motion.main className="flex flex-col items-center "
+          initial={{ opacity: 0, }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}>
 
-        <div><h1> <Link href={"/cities"}>MAIN  </Link></h1></div>
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-gray-750 dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <h1 className="mt-5 text-center font-bold">About this project: </h1>
+          <ul className="list-disc list-inside space-y-2 text-gray-200 mt-5 ">
+            <li>Connect 4 is a web app that organizes user-driven events by city.</li>
+            <li>It's made for people who want to meet others around very specific hobbies or niche interests.</li>
+            <li>Each event includes details like topic, time, date, and location.</li>
+            <li>Users can create new events or join existing ones. All your joined/created are in "my events" page.</li>
+            <li>Every event is limited to 4 participants, with a private chat once joined.</li>
+          </ul>
+
+
+
+
+
+
+          <div className="w-[75%] overflow-hidden  px-5 py-1 text-center mt-7 rounded-2xl mb-10 border border-white">
+
+            <div onClick={() => setTech(!tech)} className="flex justify-between cursor-pointer">
+              <div></div>
+              <h1 className="font-bold"> Technologies used:</h1>
+              <div className={`${tech ? "rotate-180" : "rotate-0"} transition-all duration-400`}> v</div>
+            </div>
+
+            <motion.div
+
+              initial={{ height: tech ? "auto" : "0", opacity: tech ? 1 : 0 }}
+              animate={{ height: tech ? "auto" : "0", opacity: tech ? 1 : 0 }}
+              transition={{ duration: 0.4, height: { type: !tech ? "tween" : "spring", damping: 17, stiffness: 125, ease: "linear" } }}>
+
+              <ul className="list-disc list-inside space-y-2 text-left text-white py-4">
+                <li>Next.js (React + TypeScript)</li>
+                <li>Supabase (Database, Auth, Real-time, Vector storage)</li>
+                <li>OpenAI (RAG for AI-based event filtering)</li>
+
+                <li>Framer Motion (Animations & Transitions)</li>
+              </ul>
+
+            </motion.div>
+          </div>
+
+          <div className="text-center mb-10 mt-5 hover:scale-106 transition-all duration-200 "><Link className="bg-white text-black  text-md font-bold   py-1 px-6 rounded-3xl" href={"/cities"}> Enter Website </Link></div>
+
+
+
+
+        </motion.main>
+
+      </motion.div>
+
+
     </div>
   );
 }

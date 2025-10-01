@@ -100,16 +100,37 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
 
 
     return (
-        <div className="fixed inset-0 bg-opacity-50 backdrop-blur-xs flex justify-center items-center text-white z-[9999]">
+        <div className="fixed inset-0 bg-opacity-50 backdrop-blur-xs flex justify-center items-center text-white z-100">
             <motion.div
-                className="flex flex-col w-[40%] h-[60%]  rounded-2xl shadow-xl shadow-gray-600 bg-gray-700 relative"
+                className="flex flex-col w-[40%] pb-5  rounded-2xl shadow-md border-white border shadow-gray-600 bg-black relative"
                 initial={{ y: "100vh" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut", type: spring, bounce: 0.15 }}
             >
                 <div className="absolute top-3 right-5 cursor-pointer text-gray-300 text-2xl" onClick={closemodal}> x </div>
-                <div className="mt-[10%] text-2xl flex justify-center ">Sign up or Login </div>
-                <motion.form className="mt-[10%] flex flex-col items-center space-y-3"
+
+
+                <div className="mt-[4%] text-md flex justify-center space-x-2 ">
+
+                    <div className={`  relative ${thh ? "text-black" : "text-white"} z-500 transition-all duration-300 py-1 px-4 cursor-pointer`}
+                        onClick={() => setThh(true)}>
+                        Sign up
+                        {thh && <motion.div className="absolute bg-white h-full w-full rounded-2xl -z-200 left-0 right-0 bottom-0"
+                            layoutId="sign"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}>
+                        </motion.div>}
+                    </div>
+                    <div className={`relative ${!thh ? "text-black" : "text-white"} z-500 transition-all duration-300 py-1 px-4 cursor-pointer`}
+                        onClick={() => setThh(false)}>
+                        Login
+                        {!thh && <motion.div className="absolute bg-white h-full w-full rounded-2xl -z-200 left-0 right-0 bottom-0"
+                            layoutId="sign"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.34 }}>
+                        </motion.div>}
+
+                    </div>
+                </div>
+                <motion.form className="mt-[7%] flex flex-col items-center space-y-3 "
 
                     onSubmit={handlesubmit}>
                     <input
@@ -143,15 +164,15 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
                         onChange={(e) => { setName(e.target.value) }}
 
                     />}
-                    <button type="submit" className="py-2 rounded-md w-[20%] bg-white cursor-pointer text-black"> {loading ? "Loading... " : thh ? "Sign up" : "Login"}</button>
+                    <button type="submit" className="hover:scale-106 transition-all  duration-200 py-2 rounded-md w-[20%] bg-white cursor-pointer text-black"> {loading ? <span className="spinner border-t-transparent border-black"></span> : thh ? "Sign up" : "Login"}</button>
 
 
                 </motion.form>
-                <a className="flex justify-center bottom-5 underline cursor-pointer mt-3" onClick={() => setThh(!thh)}>
+                {/* <a className="flex justify-center bottom-5 underline cursor-pointer mt-3" onClick={() => setThh(!thh)}>
                     {thh ? "Have an account? Login" : "No account? Signup"}
-                </a>
-                <div> {messsage}</div>
-                <div> {user?.user?.id}aa</div>
+                </a> */}
+                <div className=" text-center text-red-500"> {messsage}</div>
+
 
             </motion.div>
         </div>
