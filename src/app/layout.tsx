@@ -34,10 +34,14 @@ export default function RootLayout({
 
     <html lang="en">
 
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Analytics />
         <AuthContextProvider>
+
+
           <Navbar></Navbar>
 
           <div className="px-5">{children}</div>
