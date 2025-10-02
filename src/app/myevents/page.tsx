@@ -76,7 +76,7 @@ const Myevents = (() => {
                     />}
                 </div>
             </div>
-            <section className="flex flex-col items-center">{loading || authLoading ? <span className="mt-5 spinner border-t-transparent border-white"></span> : <EventCards eventlist={show === 1 ? joinedEvents : show === 2 ? createdEvents : null} />} </section>
+            <section className="flex flex-col items-center">{loading || authLoading ? <span className="mt-5 spinner border-t-transparent border-white"></span> : <EventCards eventlist={show === 1 ? joinedEvents : show === 2 ? createdEvents : null} search={true} />} </section>
             <section></section>
             <section></section>
         </div>
