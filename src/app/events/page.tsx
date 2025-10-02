@@ -47,7 +47,7 @@ const Events = () => {
 
 
             {loading ? <h1 className="text-2xl ">Loading...</h1> : eventlist.length === 0 ? <h1>No events yet</h1> :
-                <EventCards eventlist={eventlist} />
+                <EventCards eventlist={eventlist} search={true} />
             }
 
             <div className="text-white fixed bottom-7 right-5 border-2 py-1.5 px-3 bg-black rounded-3xl "> <Link href={`/cities/create`}> Create an event </Link> </div>

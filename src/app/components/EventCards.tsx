@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link"
-import { BookmarkIcon, CalendarIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline"
+import { BookmarkIcon, } from "@heroicons/react/24/outline"
 
 
 
-const EventCards = (({ eventlist }: { eventlist: any }) => {
+const EventCards = (({ eventlist ,search}: { eventlist: any ,search:boolean}) => {
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
@@ -58,7 +58,7 @@ const EventCards = (({ eventlist }: { eventlist: any }) => {
 
                                             {/* <p className="text-gray-500 ">{event.date.toString().split("T")[1]?.slice(0, 5)} </p> */}
 
-                                            <p className="text-gray-500">{event.location}</p>
+                                            <p className="text-gray-500">{event.location} {search && "(" + event.cityid+")"}</p> 
 
 
 
