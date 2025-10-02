@@ -138,7 +138,7 @@ const Eventinfo = () => {
             <motion.div
                 className="flex flex-col w-[70%] self-center justify-center mt-20   border border-white overflow-hidden px-2 py-1 rounded-2xl">
                 <div onClick={() => setShowInfo(!showInfo)}
-                    className="flex justify-between items-center pl-2 cursor-pointer"
+                    className="flex justify-between items-center px-4    cursor-pointer"
                 >
                     <div className=""><b> </b></div>
                     <div className="">{infoLoading ? <span className="spinner border-t-transparent border-white"></span> : <b>{eventInfo?.name} </b>}</div>
@@ -167,7 +167,7 @@ const Eventinfo = () => {
                             <h1 className="mt-5"> <b className="text-white">Event Name: </b>{eventInfo?.name} </h1>
                             <h1 className=""> <b className="text-white">Members: </b >{eventInfo?.people} </h1>
                             <p className=""> <b className="text-white">Description: </b> {eventInfo?.description} </p>
-                            <p className=""> <b className="text-white">Date: </b>{eventInfo?.date} </p>
+                            <p className=""> <b className="text-white">Date & Time: </b>{eventInfo?.date?.split("T")[0]}, {eventInfo?.date?.split("T")[1]?.slice(0,5)}</p>
                             <p className="">  <b className="text-white">Location: </b>{eventInfo?.location} ({eventInfo?.cityid})</p>
 
                             <p className="">  <b className="text-white">Created by: </b>{username} </p>

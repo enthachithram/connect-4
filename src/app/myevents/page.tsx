@@ -28,7 +28,7 @@ const Myevents = (() => {
                     e.Events
                 ))
                 setJoinedEvents(newdata)
-                setTimeout(() => setLoading(false), 0);
+                setTimeout(() => setLoading(false), 200);
             }
         })
 

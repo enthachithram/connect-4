@@ -28,7 +28,7 @@ export default function Home() {
           <h1 className="mt-5 text-center font-bold">About this project: </h1>
           <ul className="list-disc list-inside space-y-2 text-gray-200 mt-5 ">
             <li>Connect 4 is a web app that organizes user-driven events by city.</li>
-            <li>It's made for people who want to meet others around very specific hobbies or niche interests.</li>
+            <li>It&apos;s made for people who want to meet others around very specific hobbies or niche interests.</li>
             <li>Each event includes details like topic, time, date, and location.</li>
             <li>Users can create new events or join existing ones. All your joined/created are in "my events" page.</li>
             <li>Every event is limited to 4 participants, with a private chat once joined.</li>
