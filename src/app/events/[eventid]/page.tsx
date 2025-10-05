@@ -153,7 +153,8 @@ const Eventinfo = () => {
 
 
                     {/* <div> chat of the event: {eventid} </div> */}
-                    {infoLoading ? <div role="status" aria-busy="true" className="w-full space-y-5">
+                    {infoLoading ? 
+                    <div role="status" aria-busy="true" className="w-full space-y-5">
                         <div className="mt-4.5 h-3 w-3/6 rounded bg-gray-900 animate-pulse" />
                         <div className="h-3 w-1/6 rounded bg-gray-900  animate-pulse" />
                         <div className="h-3 w-4/6 rounded bg-gray-900  animate-pulse" />
@@ -162,6 +163,7 @@ const Eventinfo = () => {
                         <div className=" h-3 w-2/5 rounded bg-gray-900 animate-pulse" />
                         <div className="mb-0.5 h-3 w-4/5 rounded bg-gray-900 animate-pulse" />
                     </div> :
+
 
                         <div className="text-gray-300 flex flex-col space-y-1.5 ">
                             <h1 className="mt-5"> <b className="text-white">Event Name: </b>{eventInfo?.name} </h1>
