@@ -12,6 +12,8 @@ export async function POST(req: Request) {
 
         const query = await req.json()
 
+        await supabase.from("Logs").insert({query})
+
         //----1.---//
         const { data: semifilter, error } = await supabase.from("Events").select("*")
 
@@ -88,7 +90,7 @@ Output:
                 }
             ],
             temperature: 0,
-            response_format: { type: "json_object" } // <-- strict JSON
+            response_format: { type: "json_object" } 
         });
 
 
@@ -108,13 +110,15 @@ Output:
         if (parsed && Array.isArray(parsed.matched_event_ids)) {
             selectedIds = parsed.matched_event_ids;
         } else {
-            console.warn("AI returned unexpected format:", parsed);
+            console.error("AI returned unexpected format:", parsed);
         }
         console.log(selectedIds)
 
         //---- 4. ---//
         const finalEvents = semifilter.filter((e: any) =>
             selectedIds.includes(e.eventid)
+
+        
         );
         return NextResponse.json({ events: finalEvents });
 
