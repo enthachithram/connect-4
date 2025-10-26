@@ -46,7 +46,9 @@ const Events = () => {
     }, [])
 
     return (
-        <div className="p-2 flex flex-col items-center w-auto">
+        <div className="p-2 flex flex-col items-center w-full ">
+
+
             <div className="mt-5 text-2xl"> Upcoming events in <span className="font-bold">{cityid}:</span> </div>
 
 

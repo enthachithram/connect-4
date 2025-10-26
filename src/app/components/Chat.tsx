@@ -37,7 +37,8 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                 .order("created_at", { ascending: true })
 
             if (error) console.log(error, "from chat fetch")
-            console.log(data, "from chat comp")
+
+
 
 
 
@@ -48,7 +49,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
     }, [joined])
 
     useEffect(() => {
-        console.log(eventid, "event id ")
+        // console.log(eventid, "event id ")
         const channel = supabase
             .channel(`chat-${eventid}`)
             .on(
@@ -72,7 +73,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                         setMessages((prev: any) => [...prev, { ...newMessage, Users: userData ? { username: userData.username } : [newMessage.userid] }])
                     }
 
-                    console.log(payload.new, "payload")
+                    // console.log(payload.new, "payload")
 
                 }
             )
@@ -96,7 +97,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
         <div >
             <h1></h1>
             <section className="flex flex-col items-center mb-20 mt-7 ">
-                <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-2xl border border-white ">
+                <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-3xl border border-white ">
 
 
                     <div className=" text-white overflow-y-scroll  no-scrollbar space-y-2 mb-2">
@@ -115,7 +116,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                             className="flex space-x-3"
                             onSubmit={handleSubmit}>
                             <input
-                                className="w-full text-gray-200 border border-white rounded-2xl py-1 px-3 outline-none focus:ring-0"
+                                className="w-full text-gray-200 border border-white rounded-3xl py-2 px-3 outline-none focus:ring-0"
                                 type="text"
                                 required
                                 placeholder=" Type your message"

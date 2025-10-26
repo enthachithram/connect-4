@@ -79,7 +79,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
                 dispatch({ type: "LOGOUT" })
             }
             dispatch({ type: "supaUser", payload: supaUser.user })
-            console.log("from auth context", supaUser)
+            // console.log("from auth context", supaUser)
 
             const channel = supabase
                 .channel("warmup")
@@ -95,7 +95,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren<{}>) => {
 
         if (user) {
             dispatch({ type: "LOGIN", payload: user });
-            console.log(state.user, state.numb, "auth")
+            // console.log(state.user, state.numb, "auth")
             supa()
 
 

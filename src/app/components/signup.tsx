@@ -15,7 +15,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
     const [password, setPassword] = useState("")
     const [thh, setThh] = useState<boolean>(true)
     const [messsage, setMessage] = useState("")
-    const [loading, setLoading] = useState(false) 
+    const [loading, setLoading] = useState(false)
 
     const handlesubmit = (async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -26,7 +26,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
 
             console.log(data, "user data from supa sign up")
             if (error) {
-                setMessage(error.message)       
+                setMessage(error.message)
                 setLoading(false)
                 return
             }

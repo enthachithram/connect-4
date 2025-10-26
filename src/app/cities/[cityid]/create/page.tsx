@@ -9,9 +9,9 @@ import { useContext, useState } from "react"
 
 const Create = (() => {
 
-    const router=useRouter()
+    const router = useRouter()
 
-    const {cityid}:{cityid:string}=useParams()
+    const { cityid }: { cityid: string } = useParams()
 
     const { user } = useContext(AuthContext)!
 
@@ -25,36 +25,71 @@ const Create = (() => {
 
     const [loading, setLoading] = useState<boolean>(false)
     const [message, setMessage] = useState<object>()
-    
+
 
     const handlesubmit = (async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         setLoading(true)
+        const { data: { session } } = await supabase.auth.getSession()
+
+        if (!session) {
+            setLoading(false)
+            return
+        }
+        const token = session.access_token
 
 
-        const { data, error } = await supabase.from("Events").insert([
-            {
+
+        const res = await fetch("/api/events", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
                 cityid: selectedcityid.toLowerCase(),
                 name: name,
                 date: new Date(`${date}T${time}:00`).toISOString(),
                 location: place,
                 description: description,
                 created_by: user?.id
+            })
+        })
+        const response = await res.json()
+
+        console.log(response, "respoooo")
 
 
-            }])
-
-        if (error) {
-            console.log(error)
-            setLoading(false)
-            return
+        if (res.ok) {
+            router.push(`/events/${response.eventid}`)
         }
-        else {
-            console.log(data)
-            router.push(`/cities/${selectedcityid}/events`)
-        }
-        
+
+
+        setLoading(false)
+
+
+        // const { data, error } = await supabase.from("Events").insert([
+        //     {
+        //         cityid: selectedcityid.toLowerCase(),
+        //         name: name,
+        //         date: new Date(`${date}T${time}:00`).toISOString(),
+        //         location: place,
+        //         description: description,
+        //         created_by: user?.id
+
+        //     }])
+
+        // if (error) {
+        //     console.log(error)
+        //     setLoading(false)
+        //     return
+        // }
+        // else {
+        //     console.log(data)
+        //     router.push(`/cities/${selectedcityid}/events`)
+        // }
+
     })
 
 
@@ -85,15 +120,15 @@ const Create = (() => {
                     value={name}
                     onChange={(e) => setName(e.target.value)} />
 
-                    <textarea
+                <textarea
                     className="createInput"
                     placeholder="Description"
                     required
                     value={description}
                     onChange={(e) => setDescription(e.target.value)} />
 
-                    <input
-                    className="createInput mb-10" 
+                <input
+                    className="createInput mb-10"
 
                     type="text"
                     placeholder="Placee"
@@ -111,7 +146,7 @@ const Create = (() => {
 
 
                 <input
-            
+
                     className="createInput mt-2 mb-10"
                     type="time"
                     placeholder="Time"
@@ -120,10 +155,10 @@ const Create = (() => {
                     onChange={(e) => setTime(e.target.value)} />
 
 
-                
-                
+
+
                 <button className="bg-white text-black hover:scale-106 py-2 rounded-3xl transition-all duration-300 cursor-pointer" type="submit" disabled={loading}>
-                    {loading ? <span className="spinner border-t-transparent border black"></span>: "Create Event"}
+                    {loading ? <span className="spinner border-t-transparent border black"></span> : "Create Event"}
                 </button>
 
 

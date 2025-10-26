@@ -8,7 +8,6 @@ import { motion, spring } from "framer-motion"
 import { useParams } from "next/navigation"
 
 import React, { useContext, useEffect, useState } from "react"
-import { LoadingBrick } from "./components/loadingBrick"
 
 const Eventinfo = () => {
 
@@ -139,56 +138,17 @@ const Eventinfo = () => {
 
         <div className="flex flex-col ">
             <motion.div
-                className=" flex flex-col w-[70%] self-center justify-center mt-20   border border-white overflow-hidden px-2 py-2 rounded-3xl">
-                <div onClick={() => setShowInfo(!showInfo)}
-                    className="flex justify-between items-center px-4    cursor-pointer"
-                >
-                    <div className=""><b> </b></div>
-                    <div className="">{infoLoading ? <span className="spinner border-t-transparent border-white"></span> : <b>{eventInfo?.name} </b>}</div>
-                    <div className={`${showInfo ? "rotate-180" : "rotate-0"} transition-all duration-500`}> ▼ </div>
-                </div>
-
-
-                <motion.div className="flex text-gray-200 flex-col items-start pl-2 space-y-1.5 "
-                    initial={{ height: showInfo ? "auto" : "0", opacity: showInfo ? 1 : 0, pointerEvents: showInfo ? "auto" : "none" }}
-                    animate={{ height: showInfo ? "auto" : "0", opacity: showInfo ? 1 : 0, pointerEvents: showInfo ? "auto" : "none", }}
-                    transition={{ height: { type: !showInfo ? "tween" : "spring", damping: 17, stiffness: 125, ease: "linear" }, opacity: { duration: 0.2 }, pointerEvents: { duration: 0 } }}>
-
-
-                    {/* <div> chat of the event: {eventid} </div> */}
-                    {infoLoading ?
-                        <LoadingBrick /> :
-
-
-                        <div className="text-gray-300 flex flex-col space-y-1.5 ">
-                            <h1 className="mt-5"> <b className="text-white">Event Name: </b>{eventInfo?.name} </h1>
-                            <h1 className=""> <b className="text-white">Members: </b >{eventInfo?.people} </h1>
-                            <p className=""> <b className="text-white">Description: </b> {eventInfo?.description} </p>
-                            <p className=""> <b className="text-white">Date & Time: </b>{eventInfo?.date?.split("T")[0]}, {eventInfo?.date?.split("T")[1]?.slice(0, 5)}</p>
-                            <p className="">  <b className="text-white">Location: </b>{eventInfo?.location} ({eventInfo?.cityid})</p>
-                            <p className="">  <b className="text-white">Created by: </b>{username} </p>
-                            <p className="">  <b className="text-white"> Created on: </b>{eventInfo?.created_at.split("T")[0]} </p>
-
-
-                        </div>}
+                className=" flex flex-col w-[70%] self-center justify-center mt-20   border border-white overflow-hidden px-2 py-1 rounded-2xl">
 
 
 
-
-
-                    <motion.button className={`self-center mb-2 mt-2 w-[250px] px-6 rounded-4xl py-1.5 transition-all duration-300 cursor-pointer text-black  ${joined ? "border border-red-500 text-red-500 hover:bg-red-500 hover:text-white hover:border-black " : " bg-white border border-white hover:bg-gray-200 "} whitespace-nowrap overflow-hidden `}
-                        onClick={handlesubmit}>
-
-                        {authLoading || loading || joined === null ? <span className={`spinner border-t-transparent
-  border-black ${joined ? "border-white" : "border-black"}`}></span> : joined ? "Leave this event" : "Join this event"}  </motion.button>
-                </motion.div>
 
 
             </motion.div>
 
             {joined && <Chat eventid={eventid} joined={joined}></Chat>}
 
-            {/* {joined && <Members eventid={eventid} joined={joined}></Members>} */}
+            {joined && <Members eventid={eventid} joined={joined}></Members>}
 
 
 

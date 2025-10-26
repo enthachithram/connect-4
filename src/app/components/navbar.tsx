@@ -40,7 +40,7 @@ const Navbar = () => {
         window.location.reload()
     })
 
-    supaUser && console.log("supUSer", supaUser)
+
 
     const [signupmodal, setSignupmodal] = useState<boolean>(false)
 
@@ -66,15 +66,13 @@ const Navbar = () => {
                     {authLoading ? <span className="spinner"></span> : user ? <div className="relative font-bold cursor-pointer"
                         onMouseEnter={() => setMenu(true)} onMouseLeave={() => { setMenu(false) }}> {authLoading ? <span className="spinner"></span> : user?.username + " " + "▾"}
 
-                        {menu &&
-                            <motion.div className="absolute flex  flex-col space-y-0.5 cursor-pointer text-[15px] left-[50%] transform translate-x-[-50%]  h-auto top-6 border-t-1  w-max border-gray-600 rounded-md border px-3 py-2"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.5 }}>
 
-                                <Link href={"/myevents"} className="" > My Events</Link>
-                                <div className="text-red-700" onClick={logout}> Logout</div>
-                            </motion.div>}
+                        <motion.div className={`absolute ${menu ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} transition-all duration-350 flex flex-col space-y-0.5 cursor-pointer text-[15px] left-[50%] transform translate-x-[-50%]  h-auto top-6 border-t-1  w-max border-gray-600 rounded-md border px-3 py-2`}
+                        >
+
+                            <Link href={"/myevents"} className="hover:underline cursor-pointer" > My Events</Link>
+                            <div className="text-red-700 hover:underline cursor-pointer" onClick={logout}> Logout</div>
+                        </motion.div>
                     </div> : < div className="font-bold cursor-pointer" onClick={() => { setSignupmodal(true); setMenu(false) }}>LOGIN</div>}
 
 
