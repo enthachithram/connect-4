@@ -98,7 +98,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
     return (
         <div >
             <h1></h1>
-            <section className="flex flex-col items-center mb-20 mt-7 ">
+            <section className="flex flex-col items-center mb-20 mt-10 ">
                 <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-2xl border border-white ">
 
 

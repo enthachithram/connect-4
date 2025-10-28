@@ -34,7 +34,8 @@ const Eventinfo = () => {
             const { data: { session } } = await supabase.auth.getSession()
             if (!session) {
                 setLoading(false)
-                return alert("signup or login ")
+
+                return alert("Sign up or login ")
             }
             const token = session.access_token
 
@@ -186,9 +187,11 @@ const Eventinfo = () => {
 
             </motion.div>
 
+            {joined && <Members eventid={eventid} joined={joined}></Members>}
+
             {joined && <Chat eventid={eventid} joined={joined}></Chat>}
 
-            {/* {joined && <Members eventid={eventid} joined={joined}></Members>} */}
+
 
 
 

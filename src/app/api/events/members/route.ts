@@ -22,7 +22,7 @@ export async function POST(req: Request) {
         }
 
         const { data: memberList, error: membersError } = await supabase.from("Participants")
-            .select("userid,Users!inner(username)")
+            .select("userid,isOwner,Users!inner(username)")
             .eq("eventid", eventid)
 
         console.log(memberList, membersError)

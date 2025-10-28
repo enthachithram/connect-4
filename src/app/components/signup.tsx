@@ -164,7 +164,7 @@ const Signup = (({ closemodal }: { closemodal: () => void }) => {
                         onChange={(e) => { setName(e.target.value) }}
 
                     />}
-                    <button type="submit" className="hover:scale-106 transition-all  duration-200 py-2 rounded-md w-[20%] bg-white cursor-pointer text-black"> {loading ? <span className="spinner border-t-transparent border-black"></span> : thh ? "Sign up" : "Login"}</button>
+                    <button type="submit" className="hover:scale-106 transition-all mb-3 duration-200 py-2 rounded-md w-[20%] bg-white cursor-pointer text-black"> {loading ? <span className="spinner border-t-transparent border-black"></span> : thh ? "Sign up" : "Login"}</button>
 
 
                 </motion.form>

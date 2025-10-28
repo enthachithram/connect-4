@@ -29,7 +29,7 @@ const Events = () => {
 
 
             if (error) {
-                console.error(error)
+                console.log(error)
                 setLoading(false)
             }
             else {

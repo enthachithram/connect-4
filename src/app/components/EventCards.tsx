@@ -36,7 +36,7 @@ const EventCards = (({ eventlist, search }: { eventlist: any, search: boolean })
                         onClick={() => setShowFilters(!showFilters)}>
 
                         <div></div>
-                        <div className="">
+                        <div className="font-bold">
 
                             Filters
                         </div>
