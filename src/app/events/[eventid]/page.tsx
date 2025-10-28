@@ -1,7 +1,7 @@
 "use client"
 
-import Chat from "@/app/components/Chat"
-import Members from "@/app/components/members"
+import Chat from "@/app/events/[eventid]/components/Chat"
+import Members from "@/app/events/[eventid]/components/members"
 import { AuthContext } from "@/context/authContext"
 import { supabase } from "@/lib/supabase"
 import { motion, spring } from "framer-motion"
@@ -139,7 +139,7 @@ const Eventinfo = () => {
 
         <div className="flex flex-col ">
             <motion.div
-                className=" flex flex-col w-[70%] self-center justify-center mt-20   border border-white overflow-hidden px-2 py-2 rounded-3xl">
+                className=" flex flex-col w-[70%] self-center justify-center mt-20   border border-white overflow-hidden px-2 py-2 rounded-2xl">
                 <div onClick={() => setShowInfo(!showInfo)}
                     className="flex justify-between items-center px-4    cursor-pointer"
                 >

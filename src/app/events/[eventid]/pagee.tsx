@@ -1,7 +1,7 @@
 "use client"
 
-import Chat from "@/app/components/Chat"
-import Members from "@/app/components/members"
+import Chat from "@/app/events/[eventid]/components/Chat"
+import Members from "@/app/events/[eventid]/components/members"
 import { AuthContext } from "@/context/authContext"
 import { supabase } from "@/lib/supabase"
 import { motion, spring } from "framer-motion"

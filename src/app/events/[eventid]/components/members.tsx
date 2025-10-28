@@ -67,9 +67,7 @@ const Members = ({ eventid, joined }: { eventid: string, joined: boolean }) => {
                 transition={{ height: { type: !show ? "tween" : "spring", damping: 17, stiffness: 125, ease: "linear" }, opacity: { duration: 0.2 }, pointerEvents: { duration: 0 } }}>
 
 
-                <h1>daffd</h1>
-                <h1>daffd</h1>
-                <h1>daffd</h1>
+
                 {members && members.map((m: any) => (
                     <h1 key={m.userid}> {m?.Users?.username}</h1>
                 ))}

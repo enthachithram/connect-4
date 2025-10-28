@@ -25,7 +25,7 @@ const Events = () => {
 
             setLoading(true)
 
-            const { data, error } = await supabase.from("Events").select("*").eq("cityid", cityidLower)
+            const { data, error } = await supabase.from("Events").select("*").eq("cityid", cityidLower).order("date")
 
 
             if (error) {

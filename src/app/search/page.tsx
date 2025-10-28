@@ -45,7 +45,7 @@ const Search = (() => {
                 <div>
                     <form onSubmit={handlesubmit}
                         className="w-full flex  flex-col items-center px-5 mt-5 ">
-                            
+
                         <input
 
                             className="w-[75%] text-center border p-2 rounded-3xl outline-none"
@@ -56,11 +56,11 @@ const Search = (() => {
                             onChange={(e) => setQuery(e.target.value)}
 
                         />
-                        <button className="mt-3 bg-white text-black rounded-3xl py-2 px-10 hover:scale-106 transition-all duration-300 w-40" type="submit"> {loading ? <span className="spinner border-t-transparent border-black"></span>:"Search"}</button>
+                        <button disabled={loading} className="mt-3 bg-white text-black rounded-3xl py-2 px-10 hover:scale-106 transition-all duration-300 w-40 cursor-pointer active:scale-[0.95]" type="submit"> {loading ? <span className="spinner border-t-transparent border-black"></span> : "Search"}</button>
                     </form>
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                    { eventlist.length > 0 ? <EventCards eventlist={eventlist} search={true} /> : "no events match your query"}
+                    {eventlist.length > 0 ? <EventCards eventlist={eventlist} search={true} /> : "no events match your query"}
 
                 </div>
             </div>

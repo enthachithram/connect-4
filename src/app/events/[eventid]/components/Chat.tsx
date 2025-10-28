@@ -1,6 +1,7 @@
 import { AuthContext } from "@/context/authContext"
 import { supabase } from "@/lib/supabase"
 import { useContext, useEffect, useRef, useState } from "react"
+import { FormatDate } from "./formatDate";
 
 interface message {
     id: string;
@@ -15,6 +16,7 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [messages, setMessages] = useState<any>([])
     const [newMessage, setNewMessage] = useState<string>("")
+    const [showTime, setShowTime] = useState<any>([])
 
 
     const handleSubmit = (async (e: React.FormEvent) => {
@@ -97,14 +99,19 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
         <div >
             <h1></h1>
             <section className="flex flex-col items-center mb-20 mt-7 ">
-                <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-3xl border border-white ">
+                <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-2xl border border-white ">
 
 
-                    <div className=" text-white overflow-y-scroll  no-scrollbar space-y-2 mb-2">
+                    <div className=" text-white overflow-y-scroll  no-scrollbar space-y-3 mb-2">
                         {messages.length === 0 && <h1 className="text-center"> Be the first to send a message in this chat !</h1>}
                         {messages.map((m: any) => (
-                            <div key={m.id} className="flex justify-baseline">
-                                <b>{m.Users?.username}:&nbsp; </b><span className="break-all">{m.message}</span>
+                            <div key={m.id} className="flex justify-baseline " onMouseEnter={() => setShowTime((prev: any) => [...prev, m.id])} onMouseLeave={() => setShowTime((prev: any) => prev.filter((e: any) => e !== m.id))}>
+                                <b>{m.Users?.username}:&nbsp; </b>
+                                <span className="wrap-anywhere ">{m.message} &nbsp;
+                                    <span className={`${showTime.includes(m.id) ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} text-[70%] text-yellow-200 font-bold flex-nowrap transition-all duration-300`}>
+                                        {m.created_at.split("T")[1]?.slice(0, 5)}, &nbsp;{FormatDate(m.created_at).slice(0, -5)}
+                                    </span>
+                                </span>
 
                             </div>
                         ))}
@@ -116,10 +123,10 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
                             className="flex space-x-3"
                             onSubmit={handleSubmit}>
                             <input
-                                className="w-full text-gray-200 border border-white rounded-3xl py-2 px-3 outline-none focus:ring-0"
+                                className="w-full text-gray-200 border border-white rounded-2xl py-1.5 px-4 outline-none focus:ring-0"
                                 type="text"
                                 required
-                                placeholder=" Type your message"
+                                placeholder=" Type something..."
                                 value={newMessage}
                                 onChange={(e) => { setNewMessage(e.target.value) }}
                             />
