@@ -1,17 +1,26 @@
 import { supabase } from "@/lib/supabase-node"
+import { CheckToken } from "@/server/checkToken"
+import { error } from "console"
 import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
 
 
-    const { userid, eventid } = await req.json()
+    const { eventid } = await req.json()
+
+
 
     try {
+
+
+        const userid = await CheckToken(req.headers)
+
+
         console.log("eeee")
         const { data, error: checkError } = await supabase.from("Participants")
             .select("*")
             .eq("eventid", eventid)
-            .eq("userid", "289226e5-b690-48eb-8acb-e20d76619fe9")
+            .eq("userid", userid)
 
         console.log(data, checkError)
         console.log("eee close")
@@ -30,7 +39,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json(memberList)
 
-    } catch (error) {
-        return NextResponse.json({ error: error }, { status: 400 })
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 400 })
     }
 }

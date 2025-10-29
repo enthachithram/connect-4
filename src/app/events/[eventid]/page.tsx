@@ -144,7 +144,7 @@ const Eventinfo = () => {
                 <div onClick={() => setShowInfo(!showInfo)}
                     className="flex justify-between items-center px-4    cursor-pointer"
                 >
-                    <div className=""><b> </b></div>
+                    <div className="opacity-0 pointer-events-none"> ▼ </div>
                     <div className="">{infoLoading ? <span className="spinner border-t-transparent border-white"></span> : <b>{eventInfo?.name} </b>}</div>
                     <div className={`${showInfo ? "rotate-180" : "rotate-0"} transition-all duration-500`}> ▼ </div>
                 </div>

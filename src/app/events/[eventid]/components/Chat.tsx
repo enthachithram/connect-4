@@ -99,10 +99,11 @@ const Chat = (({ eventid, joined }: { eventid: string, joined: boolean | null })
         <div >
             <h1></h1>
             <section className="flex flex-col items-center mb-20 mt-10 ">
-                <div className=" h-100 w-[70%]  py-5 px-5 flex flex-col justify-between rounded-2xl border border-white ">
+                <div className=" h-110 w-[70%]  py-2 pb-3 px-5 flex flex-col justify-between rounded-2xl border border-white ">
+                    <div className="text-center font-bold">Chat </div>
 
 
-                    <div className=" text-white overflow-y-scroll  no-scrollbar space-y-3 mb-2">
+                    <div className=" text-white overflow-y-scroll  no-scrollbar space-y-3 mb-1 px-2">
                         {messages.length === 0 && <h1 className="text-center"> Be the first to send a message in this chat !</h1>}
                         {messages.map((m: any) => (
                             <div key={m.id} className="flex justify-baseline " onMouseEnter={() => setShowTime((prev: any) => [...prev, m.id])} onMouseLeave={() => setShowTime((prev: any) => prev.filter((e: any) => e !== m.id))}>

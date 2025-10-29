@@ -15,10 +15,7 @@ const Members = ({ eventid, joined }: { eventid: string, joined: boolean }) => {
     const [show, setShow] = useState<boolean>(false)
 
 
-    const handleClick = () => {
 
-
-    }
 
     useEffect(() => {
 
@@ -65,7 +62,7 @@ const Members = ({ eventid, joined }: { eventid: string, joined: boolean }) => {
         <motion.div className="mb-5 flex flex-col w-[70%] self-center justify-center mt-5   border border-white overflow-hidden px-2 py-2 rounded-2xl">
             <div className="flex justify-between cursor-pointer px-4"
                 onClick={() => setShow(!show)}>
-                <div></div>
+                <div className="opacity-0 pointer-events-none"> ▼ </div>
                 <h1 className="text-center font-bold">Members</h1>
                 <div className={`${show ? "rotate-180" : "rotate-0"} transition-all duration-500`}> ▼ </div>
             </div>
