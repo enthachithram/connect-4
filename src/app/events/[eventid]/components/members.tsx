@@ -67,8 +67,8 @@ const Members = ({ eventid, joined }: { eventid: string, joined: boolean }) => {
                 <div className={`${show ? "rotate-180" : "rotate-0"} transition-all duration-500`}> ▼ </div>
             </div>
 
-            <motion.div className="flex text-gray-200 flex-col items-center pl-2 space-y-1.5 text-center justify-center "
-                initial={{ height: show ? "auto" : "0", opacity: show ? 1 : 0, pointerEvents: show ? "auto" : "none" }}
+            <motion.div className="flex text-gray-200 flex-col items-center pl-2 space-y-1.5 text-center  "
+                initial={{ height: show ? "auto" : "0", opacity: show ? 1 : 1, pointerEvents: show ? "auto" : "none" }}
                 animate={{ height: show ? "auto" : "0", opacity: show ? 1 : 0, pointerEvents: show ? "auto" : "none", }}
                 transition={{ height: { type: !show ? "tween" : "spring", damping: 17, stiffness: 125, ease: "linear" }, opacity: { duration: 0.2 }, pointerEvents: { duration: 0 } }}>
 

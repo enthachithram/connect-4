@@ -9,6 +9,7 @@ import { useParams } from "next/navigation"
 
 import React, { useContext, useEffect, useState } from "react"
 import { LoadingBrick } from "./components/loadingBrick"
+import { Summary } from "./components/summary"
 
 const Eventinfo = () => {
 
@@ -190,6 +191,8 @@ const Eventinfo = () => {
             {joined && <Members eventid={eventid} joined={joined}></Members>}
 
             {joined && <Chat eventid={eventid} joined={joined}></Chat>}
+
+            {joined && <Summary eventid={eventid} joined={joined} ></Summary>}
 
 
 

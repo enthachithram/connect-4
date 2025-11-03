@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
         const query = await req.json()
 
-        await supabase.from("Logs").insert({query})
+        await supabase.from("Logs").insert({ query })
 
         //----1.---//
         const { data: semifilter, error } = await supabase.from("Events").select("*")
@@ -40,7 +40,8 @@ export async function POST(req: Request) {
 
 
 
-        console.log(query)
+
+
 
         const response = await openai.chat.completions.create({
             model: "gpt-4.1-mini-2025-04-14",
@@ -90,7 +91,7 @@ Output:
                 }
             ],
             temperature: 0,
-            response_format: { type: "json_object" } 
+            response_format: { type: "json_object" }
         });
 
 
@@ -118,7 +119,7 @@ Output:
         const finalEvents = semifilter.filter((e: any) =>
             selectedIds.includes(e.eventid)
 
-        
+
         );
         return NextResponse.json({ events: finalEvents });
 
