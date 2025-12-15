@@ -99,7 +99,7 @@ const Create = (() => {
             <form className="flex flex-col space-y-3 mt-25 w-[30%]" onSubmit={handlesubmit}>
 
                 <select
-                    className="block mb-10 px-3 py-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-white border border-gray-600 text-white;"
+                    className="block mb-10 px-3 py-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-white border border-gray-600 text-white"
                     required
                     value={selectedcityid}
                     onChange={(e) => setCityid(e.target.value)}
