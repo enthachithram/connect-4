@@ -15,7 +15,7 @@ export default function Home() {
   return (
 
     <div className=" items-center   w-full  flex flex-col   font-[family-name:var(--font-geist-sans)]">
-      <motion.div className="mt-15 items-center border border-white w-[75%] overflow-hidden  flex flex-col  rounded-xl   font-[family-name:var(--font-geist-sans)]"
+      <motion.div className="mt-15 items-center border var-border w-[75%] overflow-hidden  flex flex-col  rounded-xl   font-[family-name:var(--font-geist-sans)]"
         initial={{ height: "0", opacity: 0 }}
         animate={{ height: "auto", opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}>
@@ -26,7 +26,7 @@ export default function Home() {
 
 
           <h1 className="mt-5 text-center font-bold">About this project: </h1>
-          <ul className="list-disc list-inside space-y-2 text-gray-200 mt-5 ">
+          <ul className="list-disc list-inside space-y-2 var-muted mt-5 ">
             <li>Connect-4 is a <strong>user-driven</strong> platform for organizing local events around niche hobbies and interests.</li>
             
             <li>Each event includes details like topic, time, date, and location.</li>
@@ -40,7 +40,7 @@ export default function Home() {
 
 
 
-          <div className="w-[75%] overflow-hidden  px-5 py-1 text-center mt-7 rounded-2xl mb-10 border border-white">
+          <div className="w-[75%] overflow-hidden  px-5 py-1 text-center mt-7 rounded-2xl mb-10 border var-border">
 
             <div onClick={() => setTech(!tech)} className="flex justify-between cursor-pointer">
               <div></div>
@@ -54,7 +54,7 @@ export default function Home() {
               animate={{ height: tech ? "auto" : "0", opacity: tech ? 1 : 0 }}
               transition={{ duration: 0.4, height: { type: !tech ? "tween" : "spring", damping: 17, stiffness: 125, ease: "linear" } }}>
 
-              <ul className="list-disc list-inside space-y-2 text-left text-white py-4">
+              <ul className="list-disc list-inside space-y-2 text-left var-text py-4">
                 <li>Next.js (React + TypeScript)</li>
                 <li>Supabase (Database, Auth, Real-time, Vector storage)</li>
                 <li>OpenAI (RAG for AI-based event filtering)</li>
@@ -65,7 +65,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <div className="text-center mb-10 mt-5 hover:scale-106 transition-all duration-200 "><Link className="bg-white text-black  text-md font-bold   py-1 px-6 rounded-3xl" href={"/cities"}> Enter Website </Link></div>
+          <div className="text-center mb-10 mt-5 hover:scale-106 transition-all duration-200 "><Link className="var-btn-bg var-btn-text  text-md font-bold   py-1 px-6 rounded-3xl" href={"/cities"}> Enter Website </Link></div>
 
 
 

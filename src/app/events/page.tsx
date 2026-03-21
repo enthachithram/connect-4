@@ -50,7 +50,7 @@ const Events = () => {
                 <EventCards eventlist={eventlist} search={true} />
             }
 
-            <div className="text-white fixed bottom-7 right-5 border-2 py-1.5 px-3 bg-black rounded-3xl "> <Link href={`/cities/create`}> Create an event </Link> </div>
+            <div className="var-text fixed bottom-7 right-5 border-2 var-border py-1.5 px-3 var-bg rounded-3xl "> <Link href={`/cities/create`}> Create an event </Link> </div>
 
         </div>
 

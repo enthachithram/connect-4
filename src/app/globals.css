@@ -20,7 +20,11 @@ html {
 
 :root {
   --background: #0a0a0a;
-  --foreground: #0a0a0a;
+  --foreground: #ffffff;
+  --color-muted: #d1d5db;
+  --color-border: #ffffff;
+  --color-btn-bg: #ffffff;
+  --color-btn-text: #000000;
 }
 
 @theme inline {
@@ -60,12 +64,7 @@ html {
 
 
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: black;
-    --foreground: white;
-  }
-}
+/* Color scheme is explicitly defined in :root — no prefers-color-scheme override. */
 
 
 
@@ -74,6 +73,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Color variable utility classes */
+.var-bg       { background-color: var(--background); }
+.var-text     { color: var(--foreground); }
+.var-border   { border-color: var(--color-border); }
+.var-muted    { color: var(--color-muted); }
+.var-btn-bg   { background-color: var(--color-btn-bg); }
+.var-btn-text { color: var(--color-btn-text); }
 
 
 
